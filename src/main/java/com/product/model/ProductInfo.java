@@ -5,7 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
+/*
+ * this class holds product entity info
+ */
 @Entity
 @Table(name = "product_info")
 public class ProductInfo {
