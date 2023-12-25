@@ -1,21 +1,13 @@
 package com.product.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.hibernate.annotations.GenericGenerator;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -27,13 +19,13 @@ public class ImageModel {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long imageId;
 	private String name;
-//	@Lob
-//	private byte[] imageUrl;
+	@Lob
+	private byte[] imageUrl;
 	
 	@ManyToOne
 	@JoinColumn(name = "productId")
 	@JsonBackReference
-//	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "imageList")
+
 	private ProductInfo product;	
 
 	public ImageModel() {
@@ -70,14 +62,13 @@ public class ImageModel {
 		this.product = product;
 	}
 
-	
+	public byte[] getImageUrl() {
+		return imageUrl;
+	}
 
-//	public byte[] getData() {
-//		return imageUrl;
-//	}
-//
-//	public void setData(byte[] data) {
-//		this.imageUrl = data;
-//	}
+	public void setImageUrl(byte[] imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
 
 }
