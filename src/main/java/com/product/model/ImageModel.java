@@ -25,7 +25,6 @@ public class ImageModel {
 	@ManyToOne
 	@JoinColumn(name = "productId")
 	@JsonBackReference
-
 	private ProductInfo product;	
 
 	public ImageModel() {
