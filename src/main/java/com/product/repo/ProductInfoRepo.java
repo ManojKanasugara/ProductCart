@@ -1,9 +1,20 @@
 package com.product.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import com.product.model.ImageModel;
+import com.product.model.ProductInfo;
 
-public interface ProductInfoRepo extends JpaRepository<ImageModel, String>{
+@Repository
+public interface ProductInfoRepo extends JpaRepository<ProductInfo, Long>{
+
+	static void updateProduct(Long productId) {
+		
+	}
+
+	
+		
+	
+
 
 }

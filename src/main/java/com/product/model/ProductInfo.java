@@ -1,10 +1,25 @@
 package com.product.model;
 
+import java.util.ArrayList;
+
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.product.model.ImageModel;
 /*
  * this class holds product entity info
  */
@@ -22,13 +37,29 @@ public class ProductInfo {
 	private boolean isAvailable;
 	private String quantityType;
 	private String category;
-	
 	private String productDescription;
 	
+	@JsonManagedReference
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product",fetch = FetchType.LAZY)
+	List<ImageModel> imageList=new ArrayList<>();
+
 	
 	public ProductInfo() {
 
 	}
+	
+	public ProductInfo(String productName, int offer, float actualPrice, float offerPrice, boolean isAvailable,
+			String quantityType, String category) {
+		super();
+		this.productName = productName;
+		this.offer = offer;
+		this.actualPrice = actualPrice;
+		this.offerPrice = offerPrice;
+		this.isAvailable = isAvailable;
+		this.quantityType = quantityType;
+		this.category = category;
+	}
+
 
 	public long getProductId() {
 		return productId;
@@ -58,7 +89,7 @@ public class ProductInfo {
 		return actualPrice;
 	}
 
-	public void setActualPrice(int actualPrice) {
+	public void setActualPrice(Float actualPrice) {
 		this.actualPrice = actualPrice;
 	}
 
@@ -66,7 +97,7 @@ public class ProductInfo {
 		return offerPrice;
 	}
 
-	public void setOfferPrice(int offerPrice) {
+	public void setOfferPrice(Float offerPrice) {
 		this.offerPrice = offerPrice;
 	}
 
@@ -102,6 +133,7 @@ public class ProductInfo {
 		this.category = category;
 	}
 
+
 	public String getProductDescription() {
 		return productDescription;
 	}
@@ -109,7 +141,13 @@ public class ProductInfo {
 	public void setProductDescription(String productDescription) {
 		this.productDescription = productDescription;
 	}
-	
+	public List<ImageModel> getImageList() {
+		return imageList;
+	}
+
+	public void setImageList(List<ImageModel> imageList) {
+		this.imageList = imageList;
+	}
 	
 
 }
