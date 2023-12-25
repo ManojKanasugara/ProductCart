@@ -31,10 +31,10 @@ public class ImageModel {
 
 	}
 
-	public ImageModel(String name, byte[] data) {
+	public ImageModel(String name, byte[] imageUrl) {
 		super();
 		this.name = name;
-//		this.imageUrl = data;
+		this.imageUrl =imageUrl;
 	}
 
 	public Long getImageId() {
