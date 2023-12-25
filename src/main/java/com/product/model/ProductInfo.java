@@ -14,7 +14,7 @@ public class ProductInfo {
 
 	@Id
 	@GeneratedValue(generator = "uuid", strategy = GenerationType.AUTO)
-	private String productId;
+	private long productId;
 	private String productName;
 	private int offer;
 	private float actualPrice;
@@ -23,16 +23,18 @@ public class ProductInfo {
 	private String quantityType;
 	private String category;
 	
+	private String productDescription;
+	
 	
 	public ProductInfo() {
 
 	}
 
-	public String getProductId() {
+	public long getProductId() {
 		return productId;
 	}
 
-	public void setProductId(String productId) {
+	public void setProductId(long productId) {
 		this.productId = productId;
 	}
 
@@ -99,5 +101,15 @@ public class ProductInfo {
 	public void setCategory(String category) {
 		this.category = category;
 	}
+
+	public String getProductDescription() {
+		return productDescription;
+	}
+
+	public void setProductDescription(String productDescription) {
+		this.productDescription = productDescription;
+	}
+	
+	
 
 }
