@@ -1,8 +1,9 @@
 package com.product.model;
 
 import java.util.ArrayList;
-
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -10,16 +11,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.product.model.ImageModel;
 /*
  * this class holds product entity info
  */
@@ -31,7 +24,7 @@ public class ProductInfo {
 	@GeneratedValue(generator = "uuid", strategy = GenerationType.AUTO)
 	private long productId;
 	private String productName;
-	private int offer;
+	private float offer;
 	private float actualPrice;
 	private float offerPrice;
 	private boolean isAvailable;
@@ -77,11 +70,11 @@ public class ProductInfo {
 		this.productName = productName;
 	}
 
-	public int getOffer() {
+	public float getOffer() {
 		return offer;
 	}
 
-	public void setOffer(int offer) {
+	public void setOffer(float offer) {
 		this.offer = offer;
 	}
 
@@ -148,6 +141,5 @@ public class ProductInfo {
 	public void setImageList(List<ImageModel> imageList) {
 		this.imageList = imageList;
 	}
-	
 
 }

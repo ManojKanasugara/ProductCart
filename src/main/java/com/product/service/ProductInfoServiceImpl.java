@@ -1,9 +1,6 @@
 package com.product.service;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +10,6 @@ import com.product.model.ImageModel;
 import com.product.model.ProductInfo;
 import com.product.repo.ImageRepo;
 import com.product.repo.ProductInfoRepo;
-
-import jakarta.transaction.Transactional;
 
 @Service
 public class ProductInfoServiceImpl implements ProductInfoService {
@@ -75,7 +70,6 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 		String image1 = "/Users/priyanka/Downloads/download.jpeg";
 		String image2 = "/Users/priyanka/Downloads/download.jpeg";
 		String image3 = "/Users/priyanka/Downloads/download.jpeg";
-		String image4 = "/Users/priyanka/Downloads/download.jpeg";
 
 		image1.getBytes("HeadPhone");
 		image2.getBytes("HeadPhone");
@@ -86,13 +80,23 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 
 	}
 
-	public Optional<ProductInfo> findById(Long productId) {
-		return productInfoRepo.findById(productId);
+	public ProductInfo findById(Long productId) {
+		return productInfoRepo.findById(productId).get();
 	}
 
 	@Override
 	public void deleteById(Long productId) {
 		 productInfoRepo.deleteById(productId);
+	}
+
+	
+	@Override
+	public ProductInfo updateOfferPrice(long productId, float offerPrice) {
+		ProductInfo productInfo= productInfoRepo.findById(productId).get();
+		productInfo.setOfferPrice(offerPrice);
+		float offer=((productInfo.getActualPrice()-offerPrice)/productInfo.getActualPrice())*100;
+		productInfo.setOffer(offer);
+		return productInfoRepo.save(productInfo);
 	}
 
 	
