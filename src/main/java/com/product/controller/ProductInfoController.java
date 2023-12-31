@@ -38,7 +38,7 @@ public class ProductInfoController {
 		productInfoService.saveAllImages(fileList);
 	}
 
-	@PutMapping("/findbyid/{id}")
+	@GetMapping("/findbyid/{id}")
 	public ProductInfo findById(@PathVariable("id") Long productId) {
 		return productInfoService.findById(productId);
 	}
@@ -46,7 +46,7 @@ public class ProductInfoController {
 	@GetMapping(value = "/getimage")
 	public ResponseEntity<String> getImage() {
 
-		return ResponseEntity.ok(Base64.getEncoder().encodeToString((repo.findAll().get(0).getData())));
+		return null;
 	}
 
 	@DeleteMapping("/deletebyid/{id}")

@@ -18,23 +18,34 @@ public class ImageModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long imageId;
-	private String name;
+	private String title;
+	private String alt;
 	@Lob
-	private byte[] imageUrl;
-	
+	private byte[] image;
+	@Lob
+	private byte[] thumbImage;
+
 	@ManyToOne
 	@JoinColumn(name = "productId")
 	@JsonBackReference
-	private ProductInfo product;	
+	private ProductInfo product;
 
 	public ImageModel() {
 
 	}
 
-	public ImageModel(String name, byte[] imageUrl) {
+	public ImageModel(String title, String alt, byte[] image, byte[] thumbImage) {
 		super();
-		this.name = name;
-		this.imageUrl =imageUrl;
+		this.title = title;
+		this.alt = alt;
+		this.image = image;
+		this.thumbImage = thumbImage;
+	}
+
+	public ImageModel(String title, byte[] image) {
+		super();
+		this.title = title;
+		this.image = image;
 	}
 
 	public Long getImageId() {
@@ -45,12 +56,20 @@ public class ImageModel {
 		this.imageId = imageId;
 	}
 
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getAlt() {
+		return alt;
+	}
+
+	public void setAlt(String alt) {
+		this.alt = alt;
 	}
 
 	public ProductInfo getProduct() {
@@ -61,13 +80,20 @@ public class ImageModel {
 		this.product = product;
 	}
 
-	public byte[] getImageUrl() {
-		return imageUrl;
+	public byte[] getImage() {
+		return image;
 	}
 
-	public void setImageUrl(byte[] imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setImage(byte[] image) {
+		this.image = image;
 	}
 
+	public byte[] getThumbImage() {
+		return thumbImage;
+	}
+
+	public void setThumbImage(byte[] thumbImage) {
+		this.thumbImage = thumbImage;
+	}
 
 }

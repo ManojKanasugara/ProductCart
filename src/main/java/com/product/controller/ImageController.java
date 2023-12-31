@@ -2,6 +2,7 @@ package com.product.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,17 @@ public class ImageController {
 		return imageService.save(image);
 	}
 	
+	@PutMapping("/updateimage/{ProductId}")
+	public ImageModel updateImage(@RequestBody ImageModel image , @PathVariable ("ProductId") long productId) {
+		
+		System.out.println(image);
+		return imageService.updateImage(image,productId);
+	}
 	
+	@PutMapping("/linkimagetoproduct/{ProductId}/{ImageId}")
+	public ImageModel linkImageToProduct(@PathVariable("ProductId") long productId, 
+			@PathVariable ("ImageId") long imageId) {
+		return imageService.updateLinkImageToProduct(productId,imageId);
+	}
 	
 }

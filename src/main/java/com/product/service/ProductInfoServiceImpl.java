@@ -22,18 +22,16 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 
 	@Override
 	public ImageModel saveAllImages(MultipartFile[] fileList) throws IOException {
-
+		
 		for (MultipartFile file : fileList) {
 			System.out.println(file.getResource().toString());
 			System.out.println(file.getName());
 			System.out.println(file.getBytes());
 			ImageModel img = new ImageModel(file.getName(), file.getBytes());
 			// productInfoRepo.save(img);
-
+		
 		}
-
-		// TODO Auto-generated method stub
-		return null;
+			return null;
 	}
 
 	public ProductInfo saveProduct(ProductInfo product) {
@@ -48,7 +46,6 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 			product.setOfferPrice(product.getActualPrice()-offervalue);
 		}
 	
-
 		ProductInfo p = productInfoRepo.save(product);
 		//List<ImageModel> imageList = product.getImageList();
 		//product.setImageList(imageList);
